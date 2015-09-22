@@ -6,7 +6,12 @@ class PasswordValidator(object):
         self.minimum_length = minimum_length
 
     def is_strong_password(self, password):
-        return self._has_minimum_length(password) and re.search('[0-9]', password) is not None
+        includes_numbers = self._includes_numbers(password)
+        has_minimum_length = self._has_minimum_length(password)
+        return has_minimum_length and includes_numbers
 
     def _has_minimum_length(self, password):
         return len(password) >= self.minimum_length
+
+    def _includes_numbers(self, password):
+        return re.search('[0-9]', password) is not None
