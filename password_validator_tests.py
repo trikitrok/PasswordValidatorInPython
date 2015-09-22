@@ -8,7 +8,7 @@ def validator():
 
 
 def test_a_strong_password(validator):
-    assert validator.is_strong_password("#Ab3cccc")
+    assert validator.is_strong_password("#Ab3cccc") is True
 
 
 def test_that_only_passwords_with_the_minimum_length_are_strong(validator):
