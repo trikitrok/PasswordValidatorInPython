@@ -19,3 +19,8 @@ def test_that_only_passwords_including_numbers_are_strong():
 def test_that_only_passwords_including_upper_case_letters_are_strong():
     validator = PasswordValidator(8)
     assert validator.is_strong_password("#ab3cccc") == False
+
+
+def test_that_only_passwords_including_lower_case_letters_are_strong():
+    validator = PasswordValidator(8)
+    assert validator.is_strong_password("#AB3CCCC") == False
