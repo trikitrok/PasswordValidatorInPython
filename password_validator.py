@@ -18,13 +18,22 @@ class PasswordValidator(object):
         return len(password) >= self.minimum_length
 
     def _includes_numbers(self, password):
-        return re.search('[0-9]', password) is not None
+        return self._includes(self.NUMBERS, password)
 
     def _includes_upper_case_letters(self, password):
-        return re.search('[A-Z]', password) is not None
+        return self._includes(self.UPPER_CASE_LETTERS, password)
 
     def _includes_lower_case_letters(self, password):
-        return re.search('[a-z]', password) is not None
+        return self._includes(self.LOWER_CASE_LETTERS, password)
 
     def _includes_special_characters(self, password):
-        return re.search('[%#]', password) is not None
+        return self._includes(self.SPECIAL_CHARACTERS, password)
+
+    @staticmethod
+    def _includes(pattern, password):
+        return re.search(pattern, password) is not None
+
+    SPECIAL_CHARACTERS = '[%#]'
+    UPPER_CASE_LETTERS = '[A-Z]'
+    LOWER_CASE_LETTERS = '[a-z]'
+    NUMBERS = '[0-9]'
